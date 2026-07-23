@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #050505;
+  --color-ink-soft: #241f18;
+  --color-gold: #ffd54f;
+  --color-gold-deep: #b8891f;
+  --color-fog: #cfcfcf;
+  --color-page: #faf6ee;
+  --color-page-edge: #f1e9d8;
+  --color-leather: #0b0b0b;
+  --color-spine: #2b1c10;
+
+  --font-display: "Orbitron", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    background: var(--color-ink);
+  }
+
+  body {
+    overscroll-behavior: none;
+    font-family: var(--font-body);
+  }
+}
+
+@layer utilities {
+  .bg-leather {
+    background: radial-gradient(120% 140% at 30% 10%, #161616 0%, #0b0b0b 55%, #050505 100%);
+  }
+
+  .bg-leather-grain {
+    background-image:
+      repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.015) 0px, rgba(255, 255, 255, 0.015) 1px, transparent 1px, transparent 3px),
+      repeating-linear-gradient(25deg, rgba(0, 0, 0, 0.25) 0px, rgba(0, 0, 0, 0.25) 1px, transparent 1px, transparent 4px);
+  }
+
+  .bg-spine {
+    background: linear-gradient(180deg, #3a2414 0%, #24160c 50%, #1a0f08 100%);
+    box-shadow: inset -2px 0 6px rgba(0, 0, 0, 0.6), inset 2px 0 2px rgba(255, 213, 79, 0.08);
+  }
+
+  .bg-page {
+    background: linear-gradient(120deg, var(--color-page) 0%, #f7f1e3 100%);
+  }
+
+  .bg-paper-grain {
+    background-image: radial-gradient(rgba(0, 0, 0, 0.5) 0.5px, transparent 0.5px);
+    background-size: 3px 3px;
+  }
+}
+
+/* react-pageflip renders each child as a full-bleed leaf */
+.page-leaf {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.pq-flipbook {
+  box-shadow: 0 35px 70px -20px rgba(0, 0, 0, 0.85);
+  border-radius: 8px;
+}
+
+::selection {
+  background: rgba(255, 213, 79, 0.35);
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
