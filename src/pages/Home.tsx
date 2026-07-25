@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { PointerEvent as ReactPointerEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 import ClosedBook from "../components/Book/ClosedBook";
@@ -46,6 +47,11 @@ export default function Home() {
   const bookRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const gestureStartRef = useRef<{
+    x: number;
+    y: number;
+    moved: boolean;
+  } | null>(null);
   const lastTapRef = useRef(0);
 
   const { bookmarks, isBookmarked, toggleBookmark } = useBookmarks();
@@ -124,16 +130,45 @@ export default function Home() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [phase, handleOpen, handleNext, handlePrev]);
 
+  const clearLongPress = useCallback(() => {
+    if (longPressTimer.current) {
+      clearTimeout(longPressTimer.current);
+      longPressTimer.current = null;
+    }
+  }, []);
+
   // Double tap -> fullscreen, long press -> bookmark current page.
-  const onPointerDown = () => {
+  const onPointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
+    gestureStartRef.current = { x: e.clientX, y: e.clientY, moved: false };
     longPressTimer.current = setTimeout(() => {
-      if (currentLeaf > 0 && currentLeaf <= pages.length) {
+      if (
+        !gestureStartRef.current?.moved &&
+        currentLeaf > 0 &&
+        currentLeaf <= pages.length
+      ) {
         toggleBookmark(currentLeaf);
       }
     }, 600);
   };
+
+  const onPointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
+    const start = gestureStartRef.current;
+    if (!start || start.moved) return;
+
+    const dx = e.clientX - start.x;
+    const dy = e.clientY - start.y;
+    if (Math.hypot(dx, dy) > 8) {
+      start.moved = true;
+      clearLongPress();
+    }
+  };
+
   const onPointerUp = () => {
-    if (longPressTimer.current) clearTimeout(longPressTimer.current);
+    const wasTap = !gestureStartRef.current?.moved;
+    clearLongPress();
+    gestureStartRef.current = null;
+
+    if (!wasTap) return;
     const now = Date.now();
     if (now - lastTapRef.current < 280) {
       toggleFullscreen();
@@ -169,7 +204,12 @@ export default function Home() {
           <div
             className="relative z-10"
             onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
+            onPointerCancel={() => {
+              clearLongPress();
+              gestureStartRef.current = null;
+            }}
           >
             <Book
               ref={bookRef}

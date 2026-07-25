@@ -33,6 +33,188 @@ export const chapters: Chapter[] = [
   { id: "team", label: "Team Formation", firstPageId: "team" },
   { id: "problem", label: "Problem Statement", firstPageId: "problem" },
   { id: "rules", label: "Rules", firstPageId: "rules-1" },
+  {
+    id: "qualified-students",
+    label: "Qualified Students",
+    firstPageId: "qualified-s5-bca-a-b",
+  },
+];
+
+const qualifiedStudentPages: BookPageData[] = [
+  {
+    id: "qualified-s5-bca-a-b",
+    chapterId: "qualified-students",
+    kicker: "Qualified Students",
+    blocks: [
+      { type: "heading", text: "S5 BCA A" },
+      {
+        type: "list",
+        items: [
+          "FEBIN",
+          "AVANI K S",
+          "FIDHA FARZEEN",
+          "ALAN BINOY",
+          "HANIYA",
+          "CHAITHANYA SUNIL",
+          "AISWARYA V M",
+          "FATHIMATHU SANA",
+          "AMITH",
+          "ANAY K ANIL",
+          "ADITHYA KRISHNA",
+          "SUBJITH T S",
+          "DEVADUTT",
+          "SEBIN",
+        ],
+      },
+      { type: "heading", text: "S5 BCA B" },
+      {
+        type: "list",
+        items: [
+          "AROMAL E S",
+          "MUHAMMED FAZIL",
+          "PRANAV PRAKASHAN",
+          "DOMINIC",
+          "ABIN",
+          "ARJUN",
+          "ARAVIND",
+          
+        ],
+      },
+    ],
+  },
+  {
+    id: "qualified-s5-bca-c-bsc-cs",
+    chapterId: "qualified-students",
+    kicker: "Qualified Students",
+    blocks: [
+      { type: "heading", text: "S5 BCA C" },
+      {
+        type: "list",
+        items: [
+          "FIDHA",
+          "BAYJITHA",
+          "SINIYA",
+          "PAVANA",
+          "SANJANA",
+          "CHRISTO",
+          "NEERAJ",
+          "SARAVAN",
+          "SREELESH",
+          "MESSI",
+          "ASHMIL",
+        ],
+      },
+      { type: "heading", text: "S5 BSC CS" },
+      {
+        type: "list",
+        items: ["ADHUL K R", "ASTON", "JERALD", "ASWIN", "ADITHYAN"],
+      },
+    ],
+  },
+  {
+    id: "qualified-s5-bsc-ai-it",
+    chapterId: "qualified-students",
+    kicker: "Qualified Students",
+    blocks: [
+      { type: "heading", text: "S5 BSC AI" },
+      {
+        type: "list",
+        items: ["DEBIN", "DENIL", "SREELAKSHMI", "ABHINAV", "ALFINA", "ADITHYAN"],
+      },
+      { type: "heading", text: "S5 BSC IT" },
+      {
+        type: "list",
+        items: ["FAZILA", "BIDHA", "SAFNA", "NAZIL"],
+      },
+    ],
+  },
+  {
+    id: "qualified-s3-bca-a-b",
+    chapterId: "qualified-students",
+    kicker: "Qualified Students",
+    blocks: [
+      { type: "heading", text: "S3 BCA A" },
+      {
+        type: "list",
+        items: [
+          "GOPIKA",
+          "ANEESHA",
+          "DEVIPRIYA",
+          "PRATHANA",
+          "SHARON",
+          "SARANG",
+          "ALSABITH",
+          "NIHAL",
+          "ANANDHAKRISHNAN",
+        ],
+      },
+      { type: "heading", text: "S3 BCA B" },
+      {
+        type: "list",
+        items: ["IRFANA", "RIZNA", "AYSHA", "AMRITHA", "ADARSH T S", "AADHIL", "VISHNU"],
+      },
+    ],
+  },
+  {
+    id: "qualified-s3-bca-c-d",
+    chapterId: "qualified-students",
+    kicker: "Qualified Students",
+    blocks: [
+      { type: "heading", text: "S3 BCA C" },
+      {
+        type: "list",
+        items: [
+          "FATHIMA AHLAM",
+          "DEVIKA M S",
+          "ADHYA",
+          "ALEESHA",
+          "NAGARJUN",
+          "GAUTHAM",
+          "FARHA",
+          "NAZNEEN",
+          "DIYA FATHIMA",
+          "ANGEL",
+        ],
+      },
+      { type: "heading", text: "S3 BCA D" },
+      {
+        type: "list",
+        items: [
+          "ALAN ANTONY",
+          "SAHAL",
+          "ASHIN",
+          "NASMAL",
+          "GANASHYAM",
+          "NISHAN",
+          "SHAMIL",
+          "SABARI",
+          "THOWFEEK",
+        ],
+      },
+    ],
+  },
+  {
+    id: "qualified-s3-bsc-cs-ai-it",
+    chapterId: "qualified-students",
+    kicker: "Qualified Students",
+    blocks: [
+      { type: "heading", text: "S3 BSC CS" },
+      {
+        type: "list",
+        items: ["AYSHA", "RAHNA", "SAFIYA", "GREESHMA", "SANIYA", "KRISHNAVENI", "KARTHIKA"],
+      },
+      { type: "heading", text: "S3 BSC AI" },
+      {
+        type: "list",
+        items: ["MILHAN P A", "PRAJWIN", "SINIYA", "KEERTHANA", "SREEHARI"],
+      },
+      { type: "heading", text: "S3 BSC IT" },
+      {
+        type: "list",
+        items: ["ARYADEV", "ANEES", "BLESSON"],
+      },
+    ],
+  },
 ];
 
 export const pages: BookPageData[] = [
@@ -113,6 +295,8 @@ export const pages: BookPageData[] = [
           "Phase 2: Qualified teams will present and demonstrate their prototype before the evaluation panel.",
           "Teams that do not produce a working prototype during Phase 1 will not be eligible for Phase 2.",
           "Every team member must actively contribute to the project.",
+          "Problem statement must be delivered to the event in charge before the event.",
+          
         ],
       },
     ],
@@ -125,7 +309,6 @@ export const pages: BookPageData[] = [
       {
         type: "list",
         items: [
-          "Problem statement must be delivered to the event in charge before the event.",
           "Team members list should be submitted before August 15.",
         ],
       },
@@ -142,6 +325,7 @@ export const pages: BookPageData[] = [
       },
     ],
   },
+  ...qualifiedStudentPages,
 ];
 
 export const eventMeta = {

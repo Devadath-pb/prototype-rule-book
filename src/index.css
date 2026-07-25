@@ -68,11 +68,16 @@
   overflow: hidden;
   border-radius: 6px;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  backface-visibility: hidden;
 }
 
 .pq-flipbook {
   box-shadow: 0 35px 70px -20px rgba(0, 0, 0, 0.85);
   border-radius: 8px;
+  touch-action: pan-y;
+  user-select: none;
+  will-change: transform;
+  -webkit-user-select: none;
 }
 
 ::selection {

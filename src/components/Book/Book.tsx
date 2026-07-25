@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, memo } from "react";
 import HTMLFlipBook from "react-pageflip";
 import CoverLeaf from "./CoverLeaf";
 import BackCoverLeaf from "./BackCoverLeaf";
@@ -15,7 +15,7 @@ interface BookProps {
 }
 
 // Leaf index 0 = front cover, 1..N = content pages, N+1 = back cover.
-const Book = forwardRef<any, BookProps>(
+const Book = memo(forwardRef<any, BookProps>(
   ({ startPage, searchQuery, isBookmarked, onFlip, width, height }, ref) => {
     return (
       <HTMLFlipBook
@@ -31,16 +31,16 @@ const Book = forwardRef<any, BookProps>(
         maxHeight={640}
         startPage={startPage}
         drawShadow
-        flippingTime={650}
+        flippingTime={520}
         usePortrait
         startZIndex={10}
         autoSize={false}
-        maxShadowOpacity={0.5}
+        maxShadowOpacity={0.35}
         showCover
-        mobileScrollSupport={false}
+        mobileScrollSupport
         clickEventForward
         useMouseEvents
-        swipeDistance={20}
+        swipeDistance={12}
         showPageCorners
         disableFlipByClick={false}
         onFlip={(e: { data: number }) => onFlip(e.data)}
@@ -60,7 +60,7 @@ const Book = forwardRef<any, BookProps>(
       </HTMLFlipBook>
     );
   }
-);
+));
 
 Book.displayName = "Book";
 export default Book;

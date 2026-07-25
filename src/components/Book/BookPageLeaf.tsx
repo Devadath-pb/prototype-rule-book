@@ -52,6 +52,8 @@ interface BookPageLeafProps {
 
 const BookPageLeaf = forwardRef<HTMLDivElement, BookPageLeafProps>(
   ({ page, pageNumber, totalPages, searchQuery, isBookmarked }, ref) => {
+    const isStudentPage = page.chapterId === "qualified-students";
+
     return (
       <div ref={ref} className="page-leaf bg-page">
         <div className="absolute inset-0 bg-paper-grain opacity-[0.06]" />
@@ -66,7 +68,13 @@ const BookPageLeaf = forwardRef<HTMLDivElement, BookPageLeafProps>(
             )}
           </div>
 
-          <div className="flex-1 space-y-4 overflow-hidden">
+          <div
+            className={
+              isStudentPage
+                ? "flex-1 space-y-3 overflow-hidden"
+                : "flex-1 space-y-4 overflow-hidden"
+            }
+          >
             {page.blocks.map((block, i) => {
               if (block.type === "eyebrow") {
                 return (
@@ -106,15 +114,32 @@ const BookPageLeaf = forwardRef<HTMLDivElement, BookPageLeafProps>(
               if (block.type === "list") {
                 const useIcons = page.chapterId === "problem";
                 return (
-                  <ul key={i} className="space-y-3">
+                  <ul
+                    key={i}
+                    className={
+                      isStudentPage
+                        ? "grid grid-cols-2 gap-x-3 gap-y-2"
+                        : "space-y-3"
+                    }
+                  >
                     {block.items.map((item, j) => {
                       const ItemIcon = useIcons ? domainIcons[item] : null;
                       return (
                         <li
                           key={j}
-                          className="flex items-start gap-3 font-body text-[13px] leading-relaxed text-ink-soft sm:text-sm"
+                          className={
+                            isStudentPage
+                              ? "flex items-start gap-2 break-words font-body text-[11px] leading-snug text-ink-soft sm:text-xs"
+                              : "flex items-start gap-3 font-body text-[13px] leading-relaxed text-ink-soft sm:text-sm"
+                          }
                         >
-                          <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border border-gold-deep/40 text-gold-deep">
+                          <span
+                            className={
+                              isStudentPage
+                                ? "mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border border-gold-deep/40 text-gold-deep"
+                                : "mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border border-gold-deep/40 text-gold-deep"
+                            }
+                          >
                             {ItemIcon ? (
                               <ItemIcon size={11} />
                             ) : (
