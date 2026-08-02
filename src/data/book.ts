@@ -62,6 +62,7 @@ const qualifiedStudentPages: BookPageData[] = [
           "ANAY K ANIL",
           "ADITHYA KRISHNAN K M",
           "SUBJITH T S",
+          "SIBIN",
           "DEVADUTT",
           
         ],
@@ -100,7 +101,6 @@ const qualifiedStudentPages: BookPageData[] = [
           "NEERAJ",
           "SARAVAN",
           "SREELESH",
-          "SEBIN",
           "CHRISTINO MESSI",
           "AZMIL",
         ],
