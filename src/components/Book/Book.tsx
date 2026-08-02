@@ -21,6 +21,7 @@ const Book = memo(forwardRef<any, BookProps>(
       <HTMLFlipBook
         ref={ref}
         className="pq-flipbook"
+        style={{}}
         width={width}
         height={height}
         size="fixed"
@@ -36,12 +37,12 @@ const Book = memo(forwardRef<any, BookProps>(
         autoSize={false}
         maxShadowOpacity={0.35}
         showCover
-        mobileScrollSupport
+        mobileScrollSupport={false}
         clickEventForward
         useMouseEvents
-        swipeDistance={12}
+        swipeDistance={30}
         showPageCorners
-        disableFlipByClick={false}
+        disableFlipByClick
         onFlip={(e: { data: number }) => onFlip(e.data)}
       >
         <CoverLeaf />
