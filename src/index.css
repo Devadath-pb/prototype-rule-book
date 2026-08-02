@@ -17,20 +17,24 @@
 }
 
 @layer base {
-  * {
+  *, *::before, *::after {
+    box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
   }
 
   html,
   body,
   #root {
-    height: 100%;
+    min-height: 100dvh;
     background: var(--color-ink);
+    overflow-x: hidden;
   }
 
   body {
     overscroll-behavior: none;
     font-family: var(--font-body);
+    min-height: 100dvh;
+    overflow-x: hidden;
   }
 }
 

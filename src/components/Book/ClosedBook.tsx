@@ -7,13 +7,13 @@ interface ClosedBookProps {
 
 export default function ClosedBook({ onOpen }: ClosedBookProps) {
   return (
-    <div className="relative flex min-h-[100dvh] w-full flex-col items-center justify-center overflow-hidden bg-ink px-6">
+    <div className="relative flex min-h-[100dvh] w-full flex-col items-center justify-center overflow-hidden bg-ink px-4 sm:px-6">
       {/* soft spotlight behind the book */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[480px] w-[480px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/[0.08] blur-[110px]" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[clamp(240px,40vw,480px)] w-[clamp(240px,40vw,480px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/[0.08] blur-[110px]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#050505_75%)]" />
 
       <motion.div
-        className="relative z-10 mx-auto w-full max-w-[420px]"
+        className="relative z-10 mx-auto w-full max-w-[min(420px,calc(100vw-2rem))]"
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: "easeOut" }}

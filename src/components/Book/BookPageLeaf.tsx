@@ -58,9 +58,9 @@ const BookPageLeaf = forwardRef<HTMLDivElement, BookPageLeafProps>(
       <div ref={ref} className="page-leaf bg-page">
         <div className="absolute inset-0 bg-paper-grain opacity-[0.06]" />
 
-        <div className="relative flex h-full flex-col px-6 pb-10 pt-8 sm:px-8">
-          <div className="mb-6 flex items-center justify-between">
-            <span className="font-display text-[9px] uppercase tracking-[0.35em] text-ink-soft/50">
+        <div className="relative flex h-full flex-col px-4 pb-8 pt-6 sm:px-6 sm:pb-10 sm:pt-8">
+          <div className="mb-6 flex items-center justify-between gap-3">
+            <span className="font-display text-[0.72rem] uppercase tracking-[0.35em] text-ink-soft/50">
               {page.kicker}
             </span>
             {isBookmarked && (
@@ -80,7 +80,7 @@ const BookPageLeaf = forwardRef<HTMLDivElement, BookPageLeafProps>(
                 return (
                   <p
                     key={i}
-                    className="font-display text-sm uppercase tracking-[0.2em] text-gold-deep"
+                    className="font-display text-[0.75rem] uppercase tracking-[0.2em] text-gold-deep"
                   >
                     {highlight(block.text, searchQuery)}
                   </p>
@@ -90,7 +90,7 @@ const BookPageLeaf = forwardRef<HTMLDivElement, BookPageLeafProps>(
                 return (
                   <h2
                     key={i}
-                    className="font-display text-xl uppercase leading-snug tracking-[0.06em] text-gold-deep sm:text-2xl"
+                    className="font-display text-[clamp(1rem,4vw,1.45rem)] uppercase leading-snug tracking-[0.06em] text-gold-deep"
                   >
                     {highlight(block.text, searchQuery)}
                   </h2>
@@ -100,7 +100,7 @@ const BookPageLeaf = forwardRef<HTMLDivElement, BookPageLeafProps>(
                 return (
                   <p
                     key={i}
-                    className="font-body text-[13px] leading-relaxed text-ink-soft sm:text-sm"
+                    className="font-body text-[clamp(0.82rem,1.65vw,0.98rem)] leading-relaxed text-ink-soft"
                   >
                     {highlight(block.text, searchQuery)}
                   </p>

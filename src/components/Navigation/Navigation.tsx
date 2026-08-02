@@ -15,7 +15,7 @@ export default function Navigation({
 }: NavigationProps) {
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 flex justify-center pb-[calc(env(safe-area-inset-bottom)+14px)]">
-      <div className="pointer-events-auto flex items-center gap-5 rounded-full border border-white/10 bg-black/50 px-5 py-2.5 backdrop-blur-md">
+      <div className="pointer-events-auto flex items-center gap-4 rounded-full border border-white/10 bg-black/50 px-4 py-2.5 backdrop-blur-md max-w-[calc(100vw-2rem)] mx-2 sm:mx-0">
         <button
           type="button"
           aria-label="Previous page"

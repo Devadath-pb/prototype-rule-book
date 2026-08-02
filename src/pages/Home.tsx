@@ -21,16 +21,20 @@ function useBookSize() {
 
   useEffect(() => {
     const compute = () => {
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const width = Math.min(420, vw * 0.9);
-      const maxHeightByViewport = vh * 0.72;
-      const height = Math.min(width * 1.5, maxHeightByViewport);
+      const vw = window.visualViewport?.width ?? window.innerWidth;
+      const vh = window.visualViewport?.height ?? window.innerHeight;
+      const width = Math.min(420, Math.max(300, vw * 0.92));
+      const maxHeightByViewport = vh * 0.82;
+      const height = Math.min(width * 1.45, maxHeightByViewport);
       setSize({ width: Math.round(width), height: Math.round(height) });
     };
     compute();
     window.addEventListener("resize", compute);
-    return () => window.removeEventListener("resize", compute);
+    window.visualViewport?.addEventListener("resize", compute);
+    return () => {
+      window.removeEventListener("resize", compute);
+      window.visualViewport?.removeEventListener("resize", compute);
+    };
   }, []);
 
   return size;
@@ -189,9 +193,9 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7 }}
-          className="relative flex min-h-[100dvh] w-full flex-col items-center justify-center overflow-hidden px-4 py-20"
+          className="relative flex min-h-[100dvh] w-full flex-col items-center justify-center overflow-hidden px-4 py-16 sm:px-6 sm:py-20"
         >
-          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/[0.06] blur-[120px]" />
+          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[clamp(220px,36vw,480px)] w-[clamp(220px,36vw,480px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/[0.06] blur-[120px]" />
 
           <Header
             onSearchClick={() => setSearchOpen(true)}
@@ -202,7 +206,8 @@ export default function Home() {
           />
 
           <div
-            className="relative z-10"
+            className="relative z-10 w-full max-w-full mx-auto"
+            style={{ width }}
             onPointerDown={onPointerDown}
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}

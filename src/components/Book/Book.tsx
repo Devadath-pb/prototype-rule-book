@@ -21,7 +21,6 @@ const Book = memo(forwardRef<any, BookProps>(
       <HTMLFlipBook
         ref={ref}
         className="pq-flipbook"
-        style={{}}
         width={width}
         height={height}
         size="fixed"
